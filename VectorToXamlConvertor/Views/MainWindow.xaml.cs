@@ -13,8 +13,9 @@ namespace VectorToXamlConvertor.Views
         public MainWindow()
         {
             InitializeComponent();
-            var viewModel = (MainWindowViewModel)TryFindResource("vm");
-            //Initialize child viewmodels
+            var viewModel = (MainWindowViewModel)TryFindResource("viewModel");
+            
+			//Initialize child viewmodels
             viewModel.InputViewModel = inputView.ViewModel;
             viewModel.PostConversionViewModel = postConversionScreen.ViewModel;
         }

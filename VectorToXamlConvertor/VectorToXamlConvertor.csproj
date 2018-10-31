@@ -70,6 +70,8 @@
     <Compile Include="Converters\BoolToInverseVisibilityConverter.cs" />
     <Compile Include="Converters\BrushToNameConverter.cs" />
     <Compile Include="BrushWrapper.cs" />
+    <Compile Include="ValueConverters\BooleanVisibilityConverter.cs" />
+    <Compile Include="ValueConverters\MarkupConverter.cs" />
     <Compile Include="ViewModel\InputScreenViewModel.cs" />
     <Compile Include="ViewModel\PostConversionScreenViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
