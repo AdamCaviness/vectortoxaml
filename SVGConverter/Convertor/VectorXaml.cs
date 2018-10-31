@@ -50,17 +50,15 @@ namespace VectorToXamlConvertor
                 XamlObject = new VisualBrush((UIElement)XamlObject)
             };
         }
-        public static UIElement CloneElement(UIElement orig)
+        public static UIElement CloneElement(UIElement original)
         {
-            if (orig == null)
+            if (original == null)
                 return (null);
-            var s = XamlWriter.Save(orig);
+
+            var s = XamlWriter.Save(original);
             var stringReader = new StringReader(s);
             var xmlReader = XmlReader.Create(stringReader, new XmlReaderSettings());
             return (UIElement)XamlReader.Load(xmlReader);
-
         }
-
     }
-
 }
