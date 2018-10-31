@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SVGConverter.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
@@ -30,39 +31,9 @@ namespace VectorToXamlConvertor.Convertor.Elements
 				result = figuresAttribute.TryApplyAttribute<Path>(result);
 			}
 
-			var style = element.Attribute("style");
-			if (!string.IsNullOrEmpty(style?.Value))
-			{
-				var styleValue = style.Value;
-				var rgbString = styleValue.Split(':')[1].TrimEnd(';');
-				if (rgbString.Contains("none") ||
-					!rgbString.Contains("rgb") ||
-					!rgbString.Contains("(") ||
-					!rgbString.Contains(")"))
-					return result;
-
-				var color = Colors.Transparent;
-
-				try
-				{
-					var startIndex = rgbString.IndexOf('(') + 1;
-					var length = rgbString.IndexOf(')') - startIndex;
-
-					rgbString = rgbString.Substring(startIndex, length);
-					var items = rgbString.Split(',').Select(k => int.Parse(k)).ToArray();
-					if (items.Length == 3)
-						color = Color.FromArgb(255, (byte)items[0], (byte)items[1], (byte)items[2]);
-					else
-						color = Color.FromArgb((byte)items[0], (byte)items[1], (byte)items[2], (byte)items[3]);
-
-					if (color != Colors.Transparent)
-						result.Fill = new SolidColorBrush(color);
-				}
-				catch (Exception ex)
-				{
-					
-				}
-			}
+			var fill = SvgElementService.GetBrushFromSvgStyleAttribute(element.Attribute("style"));
+			if (fill != null && fill != Brushes.Transparent)
+				result.Fill = fill;
 
 			return result;
 		}

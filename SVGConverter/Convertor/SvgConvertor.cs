@@ -36,10 +36,10 @@ namespace VectorToXamlConvertor.Convertor
 			foreach (var pathString in pathCollection)
 			{
 				var path = (Path)XamlReader.Parse(pathString);
+
 				if (overrideFill != Brushes.Transparent && (path.Fill == null || path.Fill.Equals(Brushes.Transparent)))
-				{
 					path.Fill = overrideFill;
-				}
+
 				pathGeometryContainer.AddToContainer(path);
 				pathGeometry.AddGeometry(path.Data);
 			}

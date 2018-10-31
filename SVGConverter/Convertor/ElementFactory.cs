@@ -36,9 +36,9 @@ namespace VectorToXamlConvertor.Convertor
                 case "circle":
                 case "ellipse":
                     {
-                        var ellipseElemment = new EllipseElement(element);
-                        AddAttributesToElement(ellipseElemment, element);
-                        return ellipseElemment;
+                        var ellipseElement = new EllipseElement(element);
+                        AddAttributesToElement(ellipseElement, element);
+                        return ellipseElement;
                     }
                 case "rect":
                     {
