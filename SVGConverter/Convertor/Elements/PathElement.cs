@@ -32,7 +32,10 @@ namespace VectorToXamlConvertor.Convertor.Elements
 			}
 
 			var fill = SvgElementService.GetBrushFromSvgStyleAttribute(element.Attribute("style"));
-			if (fill != null && fill != Brushes.Transparent)
+			if (fill == null)
+				fill = new SolidColorBrush(Colors.Black);
+
+			if (fill != Brushes.Transparent)
 				result.Fill = fill;
 
 			return result;
